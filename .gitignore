@@ -1,0 +1,25 @@
+﻿# AI-Powered Phishing Email Analyzer (Blue Team)
+
+Detects phishing indicators in `.eml` or pasted text with rule-based checks and optional AI (OpenAI) explanations.
+
+## Setup (Windows)
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+setx OPENAI_API_KEY "sk-...your-key..."
+setx GPT_MODEL "gpt-5"
+# Reopen PowerShell, then:
+.\.venv\Scripts\Activate.ps1
+# === 0) Create folder structure ===
+$P = "phishing-email-analyzer"
+New-Item -ItemType Directory -Path $P,samples -Force | Out-Null
+
+# === 1) .gitignore ===
+@'
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+reports/
